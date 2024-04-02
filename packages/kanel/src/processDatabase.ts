@@ -64,6 +64,7 @@ const processDatabase = async (
 
   const generators = [
     makeCompositeGenerator("table", instantiatedConfig),
+    makeCompositeGenerator("foreignTable", instantiatedConfig),
     makeCompositeGenerator("view", instantiatedConfig),
     makeCompositeGenerator("materializedView", instantiatedConfig),
     makeCompositeGenerator("compositeType", instantiatedConfig),
