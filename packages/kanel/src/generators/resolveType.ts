@@ -195,17 +195,17 @@ const resolveType = (
     }
 
     if (!target) {
-      console.warn("Could not resolve source", source);
-      // return to prevent error: cannot read property of undefined (reading columns)
-      return "unknown";
-    }
+      // Delete source to process type as if it was the source
+      delete c['source'];
+    } else {
+      // Otherwise if a target was acquired...
+      const column = (
+        target.columns as Array<TableColumn | ViewColumn | MaterializedViewColumn>
+      ).find((c) => c.name === source.column);
 
-    const column = (
-      target.columns as Array<TableColumn | ViewColumn | MaterializedViewColumn>
-    ).find((c) => c.name === source.column);
-
-    if (column) {
-      return resolveType(column, target, config);
+      if (column) {
+        return resolveType(column, target, config);
+      }
     }
   }
 
