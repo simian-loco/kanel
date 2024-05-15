@@ -196,11 +196,13 @@ const resolveType = (
 
     if (!target) {
       // Delete source to process type as if it was the source
-      delete c['source'];
+      delete c["source"];
     } else {
       // Otherwise if a target was acquired...
       const column = (
-        target.columns as Array<TableColumn | ViewColumn | MaterializedViewColumn>
+        target.columns as Array<
+          TableColumn | ViewColumn | MaterializedViewColumn
+        >
       ).find((c) => c.name === source.column);
 
       if (column) {
